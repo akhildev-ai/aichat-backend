@@ -11,20 +11,9 @@ settings = get_settings()
 
 app = FastAPI(title="AI Chatbot API", version="1.0.0")
 
-# Allow all origins in production (can restrict later)
-origins = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:3002",
-]
-
-# Add Vercel deployment URL if set
-if settings.FRONTEND_URL:
-    origins.append(settings.FRONTEND_URL)
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
